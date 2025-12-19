@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Epstein Files Countdown</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">.
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- nee, geen leuke easter eggs in de code, behalve the game-->
   <style>
     body {
@@ -37,13 +37,12 @@
 </head>
 <body>
   <div class="container">
-    <h1>Countdown tot vrijgave Epstein Files</h1>
+    <h1 id="title">Countdown tot vrijgave Epstein Files</h1>
     <div id="countdown">Laden…</div>
     <div class="label">Dagen · Uren · Minuten · Seconden</div>
   </div>
 
   <script>
-  // Vrijdag 19 december 2025, 00:00 Washington DC (EST = UTC-5)
   const targetDate = new Date("2025-12-20T05:00:00Z").getTime();
 
   const titleEl = document.getElementById("title");
