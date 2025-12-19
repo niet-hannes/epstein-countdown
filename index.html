@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Epstein Files Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">.
+  <!-- nee, geen leuke easter eggs in de code, behalve the game-->
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0b0b0b;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    #countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    .label {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Countdown tot vrijgave Epstein Files</h1>
+    <div id="countdown">Laden…</div>
+    <div class="label">Dagen · Uren · Minuten · Seconden</div>
+  </div>
+
+  <script>
+    // Stel hier de deadline in (UTC aanbevolen)
+    const targetDate = new Date("2025-12-19T23:59:59Z").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").textContent = "TIJD VERSTREKEN";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").textContent =
+        `${days}d ${hours}u ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
