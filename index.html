@@ -43,29 +43,39 @@
   </div>
 
   <script>
-    // Stel hier de deadline in (UTC aanbevolen)
-    const targetDate = new Date("2025-12-20T05:00:00Z").getTime();
+  // Vrijdag 19 december 2025, 00:00 Washington DC (EST = UTC-5)
+  const targetDate = new Date("2025-12-20T05:00:00Z").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
+  const titleEl = document.getElementById("title");
+  const countdownEl = document.getElementById("countdown");
 
-      if (diff <= 0) {
-        document.getElementById("countdown").textContent = "TIJD VERSTREKEN";
-        return;
-      }
+  function formatTime(ms) {
+    const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((ms / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((ms / (1000 * 60)) % 60);
+    const seconds = Math.floor((ms / 1000) % 60);
+    return `${days}d ${hours}u ${minutes}m ${seconds}s`;
+  }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+  function updateTimer() {
+    const now = Date.now();
+    const diff = targetDate - now;
 
-      document.getElementById("countdown").textContent =
-        `${days}d ${hours}u ${minutes}m ${seconds}s`;
+    if (diff >= 0) {
+      // Aftellen
+      titleEl.textContent =
+        "Countdown tot vrijgave Epstein Files";
+      countdownEl.textContent = formatTime(diff);
+    } else {
+      // Optellen
+      titleEl.textContent =
+        "Het zou al minstens zo lang uitgebracht moeten zijn";
+      countdownEl.textContent = formatTime(Math.abs(diff));
     }
+  }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
 </body>
 </html>
